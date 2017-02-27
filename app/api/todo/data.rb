@@ -14,30 +14,30 @@ module Todo
 				params do
 				  requires :name, type: String
 				  requires :due_date, type: String
-				  requires :user_id, type:Integer
+				  requires :users_id, type:Integer
 				end
 		
 				post do
 				  Task.create!({
 				    name:params[:name],
 				    due_date:params[:due_date],
-				    user_id:params[:user_id]
+				    users_id:params[:user_id]
 				  })
 				end
 
 			# PUT/PATCH
 			desc "Update Task"
 				params do
-				  requires :id, type: String
+				  requires :id, type: Integer
 				end
 			
-				put ':id' do
+				put do
 				  found = Task.find(params[:id])
 				  if found
 				  	found.update({
 					    name:params[:name],
 					    due_date:params[:due_date],
-					    user_id:params[:user_id]
+					    users_id:params[:user_id]
 					  })
 					else
 						error! 
@@ -47,10 +47,11 @@ module Todo
 
 			# DELETE
 			desc "Delete Task"
+			put 'HELLOO'
 			 params do
-			   requires :id, type: String
+			   requires :id, type: Integer
 			 end
-			 delete ':id' do
+			 delete do
 			   Task.find(params[:id]).destroy!
 			 end
 
