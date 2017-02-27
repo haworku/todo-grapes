@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20170227163412) do
 
-  create_table "task_datum", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string   "name"
     t.boolean  "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "users_id"
-    t.index ["users_id"], name: "index_task_datum_on_users_id"
+    t.index ["users_id"], name: "index_tasks_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|

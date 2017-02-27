@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-	has_many :task_data
+	has_many :tasks
 end

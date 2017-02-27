@@ -5,8 +5,7 @@ module Todo
       desc "List all Task"
 
       get do
-        TaskData.all
-        puts "in this"
+        Task.all
       end
 
     end
