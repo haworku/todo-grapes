@@ -1,7 +1,32 @@
 # README
 
-Todo web service. 
-- Create a new task with due date for given user
-- Mark task as complete
-- Retrieve the tasks for user
-- Retrieve the incomplete todo items for user
+Todo web service. Rails with Grape.
+
+### Setup Scripts
+- `$ bundle install` RoR dependencies
+- `$ bundle exec rake db:create && bundle exec rake db: migrate` sqlite3 database
+- `$ bundle exec rake db:seed` grape-flavored users and tasks
+- `$ rails server` run server at localhost:3000
+
+### API 
+- Retrieve all tasks
+`GET http://localhost:3000/api/v1/task_data.json/`
+
+- Retrieve tasks for specific user
+`GET http://localhost:3000/api/v1/task_data.json/?user_id=1`
+
+- Retrieve incomplete tasks for specific user
+`GET http://localhost:3000/api/v1/task_data.json/?user_id=1&complete=false`
+
+- Create a new task for specific user
+`POST http://localhost:3000/api/v1/task_data.json`
+
+- Mark existing task as complete
+`PUT http://localhost:3000/api/v1/task_data.json/:id`
+
+**Sample Data:**
+POST 
+`{ "name": "Buy grape-flavored soda", "users_id": 1, "due_date": date-string}`
+PATCH 
+`{ "id": 1, "complete": true}`
+
