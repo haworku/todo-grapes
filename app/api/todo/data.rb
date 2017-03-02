@@ -28,6 +28,8 @@ module Todo
       end
 
 	    # POST
+	    # BUG: if complete field is not included pass nothing rather than null
+	    # BUG: if due date is incorrectly formatted send back error than than just making null
       desc 'Create Task'
 				params do
 				  requires :name, type: String
