@@ -1,7 +1,7 @@
 module Todo
   class Data < Grape::API
 
-    resource :task_data do
+    resource :tasks do
 
     	# GET
     	# SORT BY DUE DATE???

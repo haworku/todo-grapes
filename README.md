@@ -10,19 +10,19 @@ Todo web service. Rails with Grape.
 
 ### API 
 - Retrieve all tasks
-`GET http://localhost:3000/api/v1/task_data.json/`
+`GET http://localhost:3000/api/v1/tasks`
 
 - Retrieve tasks for specific user
-`GET http://localhost:3000/api/v1/task_data.json/?user_id=1`
+`GET http://localhost:3000/api/v1/tasks/users/:user_id`
 
 - Retrieve incomplete tasks for specific user
-`GET http://localhost:3000/api/v1/task_data.json/?user_id=1&complete=false`
+`GET http://localhost:3000/api/v1/tasks/users/:user_id/incomplete`
 
 - Create a new task for specific user
-`POST http://localhost:3000/api/v1/task_data.json`
+`POST http://localhost:3000/api/v1/tasks`
 
 - Mark existing task as complete
-`PUT http://localhost:3000/api/v1/task_data.json/:id`
+`PUT http://localhost:3000/api/v1/tasks/:task_id`
 
 **Sample Data:**
 POST 
