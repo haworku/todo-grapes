@@ -3,17 +3,16 @@ module Todo
 
     resource :tasks do
 
-    	# GET
-    	# SORT BY DUE DATE???
+    	# GET ALL TASKS SORTED BY DUE DATE
       desc 'List All Tasks'
 	      get do
 	        Task.all
 	      end
 
-	    # GET
       desc 'List All Tasks'
 	      get do
 	        Task.all
+	    # GET ALL TASKS FROM USER
 	      end
 
 	    # POST
