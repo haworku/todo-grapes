@@ -6,7 +6,7 @@ module Todo
     	# GET ALL TASKS SORTED BY DUE DATE
       desc 'List All Tasks'
 	      get do
-	        Task.all
+	        Task.all.order(:due_date)
 	      end
 
       desc 'List All Tasks'
