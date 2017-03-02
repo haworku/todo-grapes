@@ -34,7 +34,6 @@ module Todo
 				  requires :users_id, type:Integer
 				  optional :due_date, type: String
 				  optional :complete, type: String
-				  exactly_one_of :name, :due_date
 				end
 		
 				post do
