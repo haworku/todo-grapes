@@ -36,24 +36,19 @@ module Todo
       end
 
 	    # POST
-	    # BUG: if complete field is not included pass nothing rather than null
 	    # BUG: if due date is incorrectly formatted send back error than than just making null
       desc 'Create Task'
 				params do
 				  requires :name, type: String
-				  requires :users_id, type:Integer
+				  optional :users_id, type:Integer
 				  optional :due_date, type: String
 				  optional :complete, type: String
 				end
 		
 				post do
-				  Task.create!({
-				    name:params[:name],
-				    users_id:params[:users_id],
-				    due_date:params[:due_date],
-				    complete:params[:complete]
-				    
-				  })
+				  Task.create!(
+				 		declared(params, include_parent_namespaces: false, include_missing: false).to_h
+				 	)
 				end
 
 			# PUT/PATCH
