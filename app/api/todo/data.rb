@@ -17,7 +17,7 @@ module Todo
 		        Task.where({users_id: params[:user_id].to_i})
 		      end
 
-		       # GET ALL TASKS FROM USER
+		       # GET INCOMPELTE TASKS FROM USER
 		      desc 'List Incomplete Tasks From User'
 		      resource :incomplete do  
 	          get '/' do  # => '.../users/:user_id/incomplete'
@@ -75,13 +75,9 @@ module Todo
 
 			# DELETE
 			desc 'Delete Task'
-			 # params do
-			 #   requires :task_id, type: Integer
-			 # end
 			 delete ':task_id' , requirements: { task_id: /[0-9]*/ } do
 			   Task.find(params[:task_id]).destroy!
 			   puts 'successfully deleted'
-			   success API::Entities::Entity
 			 end
 
 			# 404
