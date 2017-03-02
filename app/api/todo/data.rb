@@ -9,11 +9,23 @@ module Todo
 	        Task.all.order(:due_date)
 	      end
 
-      desc 'List All Tasks'
-	      get do
-	        Task.all
 	    # GET ALL TASKS FROM USER
+    	desc 'List Tasks From User'	
+    	resource :users do
+		    route_param :user_id do
+		      get '/' do  # => '.../users/:user_id
+		        Task.where({users_id: params[:user_id].to_i})
+		      end
+
+		       # GET ALL TASKS FROM USER
+		      desc 'List Incomplete Tasks From User'
+		      resource :incomplete do  
+	          get '/' do  # => '.../users/:user_id/incomplete'
+	            Task.where({users_id: params[:user_id].to_i, complete: false})
+	          end
+		      end
 	      end
+      end
 
 	    # POST
       desc 'Create Task'
@@ -28,7 +40,7 @@ module Todo
 				post do
 				  Task.create!({
 				    name:params[:name],
-				    users_id:params[:user_id],
+				    users_id:params[:users_id],
 				    due_date:params[:due_date],
 				    complete:params[:complete]
 				    
@@ -45,13 +57,13 @@ module Todo
 				  optional :complete, type: String
 				end
 			
-				put ':id' , requirements: { id: /[0-9]*/ } do
-				  found = Task.find(params[:id])
+				put ':task_id' , requirements: { task_id: /[0-9]*/ } do
+				  found = Task.find(params[:task_id])
 				  if found
 				  	found.update({
 					    name:params[:name],
 					    due_date:params[:due_date],
-					    users_id:params[:user_id],
+					    users_id:params[:users_id],
 					    complete:params[:complete]
 					  })
 					else
@@ -62,11 +74,11 @@ module Todo
 
 			# DELETE
 			desc 'Delete Task'
-			 params do
-			   requires :id, type: Integer
-			 end
-			 delete ':id' , requirements: { id: /[0-9]*/ } do
-			   Task.find(params[:id]).destroy!
+			 # params do
+			 #   requires :task_id, type: Integer
+			 # end
+			 delete ':task_id' , requirements: { task_id: /[0-9]*/ } do
+			   Task.find(params[:task_id]).destroy!
 			   puts 'successfully deleted'
 			   success API::Entities::Entity
 			 end
