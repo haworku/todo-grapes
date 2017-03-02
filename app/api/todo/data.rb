@@ -9,6 +9,14 @@ module Todo
 	        Task.all.order(:due_date)
 	      end
 
+	    # GET SINGLE TASK
+	    desc 'List single task'
+		    route_param :task_id do
+		      get do
+		        Task.find(params[:task_id].to_i)
+		      end
+		    end
+
 	    # GET ALL TASKS FROM USER
     	desc 'List Tasks From User'	
     	resource :users do
