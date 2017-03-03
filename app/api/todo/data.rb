@@ -10,7 +10,6 @@ module Todo
 	      end
 
 	  # POST TASK
-	    # BUG: if due date is incorrectly formatted send back error than than just making null
       desc 'Create Task'
 				params do
 				  requires :name, type: String
