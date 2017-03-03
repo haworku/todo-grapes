@@ -27,6 +27,6 @@ Todo web service. Rails with Grape.
 **Sample Data:**
 POST 
 `{ "name": "Buy grape-flavored soda", "users_id": 1, "due_date": "2019-03-09"}`
-PATCH 
+PUT
 `{"complete": true}`
 

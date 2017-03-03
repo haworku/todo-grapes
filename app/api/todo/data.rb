@@ -65,7 +65,7 @@ module Todo
 					put do
 					  found = Task.find(params[:task_id])
 					  if found 
-					  	found.update(
+					  	found.update!(
 						    declared(params, include_parent_namespaces: false, include_missing: false).to_h
 						  )
 						else
