@@ -70,15 +70,19 @@ module Todo
 						  )
 						else
 							error! 
-							puts found.errors
 						end
 					end
 
 		# DELETE TASK
 				desc 'Delete Task'
-				 delete do
-				   Task.find(params[:task_id]).destroy!
-				   puts 'successfully deleted'
+					delete do
+					 	found = Task.find(params[:task_id])
+					 	if found
+					   	found.destroy!
+					   	status 200
+					  else
+					  	error!
+					  end
 				 end
 		  end
 
