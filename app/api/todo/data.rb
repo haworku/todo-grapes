@@ -57,7 +57,6 @@ module Todo
 		# UPDATE TASK
 				desc 'Update Task'
 					params do
-					  requires :id, type: Integer
 					  optional :name, type: String
 					  optional :users_id, type:Integer
 					  optional :due_date, type: String
@@ -66,16 +65,10 @@ module Todo
 					
 					put do
 					  found = Task.find(params[:task_id])
-					  puts 'hello'
-					  puts found.id
 					  if found 
-
-					  	found.update({
-						    name:params[:name],
-						    due_date:params[:due_date],
-						    users_id:params[:users_id],
-						    complete:params[:complete]
-						  })
+					  	found.update(
+						    declared(params, include_parent_namespaces: false, include_missing: false).to_h
+						  )
 						else
 							error! 
 							puts found.errors
@@ -90,10 +83,10 @@ module Todo
 				 end
 		  end
 
-		# 404
-			# route :any, '*path' do
-			#   error! 
-			# end
+		404
+			route :any, '*path' do
+			  error! 
+			end
     end
   end
 end
