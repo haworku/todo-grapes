@@ -1,12 +1,17 @@
 # README
 
-Todo web service. Rails with Grape.
+Todo web service. Rack & Grape.
 
 ### Setup Scripts
 - `$ bundle install` RoR dependencies
 - `$ bundle exec rake db:create && bundle exec rake db: migrate` sqlite3 database
 - `$ bundle exec rake db:seed` grape-flavored users and tasks
-- `$ rails server` run server at localhost:3000
+- `$ rackup` run local server at port :9292
+
+Reference:
+- https://github.com/ruby-grape/grape-on-rack
+- See Jordan Hollinger's otr-activerecord' for railsy implementation of active record w/ grape and rack.  https://github.com/jhollinger/otr-activerecord
+
 
 ### API 
 - Retrieve all tasks

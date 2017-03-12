@@ -1,14 +1,16 @@
-require_relative 'boot'
+require './config/environment'
+$:.unshift Config.root.join('lib')
 
-require 'rails/all'
+# Connect to database
+OTR::ActiveRecord.configure_from_file! Config.root.join('config', 'database.yml')
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+# Load application
+[
+  %w(app models ** *.rb),
+  # %w(app entities ** *.rb),
+  %w(app api todo ** *.rb),
+  %w(app api ** *.rb),
 
-module ToDoGrape
-  class Application < Rails::Application
-    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
-  end
+].each do |pattern|
+  Dir.glob(Config.root.join(*pattern)).each { |file| require file }
 end

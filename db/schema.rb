@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,16 +17,17 @@ ActiveRecord::Schema.define(version: 20170227163412) do
     t.string   "name"
     t.boolean  "complete",   default: false
     t.date     "due_date"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "users_id"
-    t.index ["users_id"], name: "index_tasks_on_users_id"
   end
+
+  add_index "tasks", ["users_id"], name: "index_tasks_on_users_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -1,5 +1,8 @@
-# This file is used by Rack-based servers to start the application.
+require './config/application'
 
-require_relative 'config/environment'
+use OTR::ActiveRecord::ConnectionManagement
 
-run Rails.application
+run Rack::Cascade.new([
+
+	Routes::Todo::API
+])
