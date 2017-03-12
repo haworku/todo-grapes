@@ -8,7 +8,7 @@ Todo web service. Rack & Grape.
 - `$ bundle exec rake db:seed` grape-flavored users and tasks
 - `$ rackup` run local server at port :9292
 
-Reference:
+### Reference:
 - https://github.com/ruby-grape/grape-on-rack
 - See Jordan Hollinger's otr-activerecord' for railsy implementation of active record w/ grape and rack.  https://github.com/jhollinger/otr-activerecord
 
@@ -32,6 +32,7 @@ Reference:
 **Sample Data:**
 POST 
 `{ "name": "Buy grape-flavored soda", "users_id": 1, "due_date": "2019-03-09"}`
+
 PUT
 `{"complete": true}`
 
